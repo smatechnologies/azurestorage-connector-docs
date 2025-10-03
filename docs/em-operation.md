@@ -1,4 +1,4 @@
-# Operation
+# Enterprise Manager Operation
 
 The connector can be used by entering arguments on the command line or using the job sub-type.
 

@@ -2,6 +2,7 @@ module.exports = {
   mySidebar: [
     'index',
     'installation',
-    'operation',
+    'em-operation',
+    'sm-operation',
   ],
 };
