@@ -1,7 +1,7 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: 'SMA Technologies Help',
-  tagline: 'Azure-Storage Connector',
+  tagline: 'Azure Storage Connector',
   url: 'https://help.smatechnologies.com',
   baseUrl: '/opcon/connectors/azure-storage/',
   onBrokenLinks: 'throw',
@@ -18,6 +18,11 @@ module.exports = {
         href: 'https://help.smatechnologies.com',
       },
     },
+    docs: {
+      sidebar: {
+        autoCollapseCategories: true,
+      },
+    },
     footer: {
       style: 'dark',
       copyright: `Copyright © ${new Date().getFullYear()} SMA Technologies.`,
@@ -28,7 +33,7 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
-          breadcrumbs: false,
+          breadcrumbs: true,
           routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
@@ -46,7 +51,7 @@ module.exports = {
   ],
   plugins: [
     [
-      require.resolve('@cmfcmf/docusaurus-search-local'), 
+      require.resolve('@cmfcmf/docusaurus-search-local'),
       {
       }
     ],

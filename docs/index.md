@@ -1,25 +1,51 @@
 ---
 slug: '/'
-sidebar_label: 'Azure-Storage Connector'
+hide_table_of_contents: true
+displayed_sidebar: null
 ---
 
-# Azure-Storage Connector
+# Azure Storage Connector
 
-Latest version : 2.0.2-12.14.6
+The Azure Storage Connector is an OpCon connector for Windows that automates file and container management tasks in Microsoft Azure Blob Storage.
 
-Azure Storage is an OpCon Connector for Windows that uses the Azure Java SDK to interact with Azure storage. 
+<div style={{display: 'flex', gap: '0.75rem', alignItems: 'flex-start', flexWrap: 'wrap', marginTop: '1rem'}}>
 
-The job definitions are entered either as Windows jobs using the Azure Storage job sub-type or Solution Manager using the AzureStorage job type. When the job is scheduled by OpCon, the definitions are passed as arguments to the AzureStorage Connector.
+<div style={{flex: '1', minWidth: '160px', display: 'flex', flexDirection: 'column', gap: '0.6rem'}}>
 
-![MSAzure Component Overview](../static/img/msazure-component-overview.png)
+<div style={{background: 'var(--ifm-card-background-color)', border: '1px solid var(--ifm-color-emphasis-400)', borderRadius: '10px', padding: '0.75rem 1rem'}}>
 
-Provides tasks to manage containers and blobs (files).
+### Overview
 
-- **list**              Provides list of containers and blobs.    
-- **container create**  Create a container.
-- **container delete**  Delete a container.
-- **delete file**       Delete a file (blob) within a container.
-- **download file**     Download a file (blob) from a container.
-- **upload file**       Upload a file to a container.
-- **file arrival**      Wait for a file (blob) to arrive in a container.
+- [Overview](./overview.md)
+- [Release Notes](./release-notes.md)
 
+</div>
+
+</div>
+
+<div style={{flex: '1', minWidth: '160px', display: 'flex', flexDirection: 'column', gap: '0.6rem'}}>
+
+<div style={{background: 'var(--ifm-card-background-color)', border: '1px solid var(--ifm-color-emphasis-400)', borderRadius: '10px', padding: '0.75rem 1rem'}}>
+
+### Getting started
+
+- [Installation](./installation.md)
+
+</div>
+
+</div>
+
+<div style={{flex: '1', minWidth: '160px', display: 'flex', flexDirection: 'column', gap: '0.6rem'}}>
+
+<div style={{background: 'var(--ifm-card-background-color)', border: '1px solid var(--ifm-color-emphasis-400)', borderRadius: '10px', padding: '0.75rem 1rem'}}>
+
+### Using the connector
+
+- [Enterprise Manager operation](./em-operation.md)
+- [Solution Manager operation](./sm-operation.md)
+
+</div>
+
+</div>
+
+</div>
