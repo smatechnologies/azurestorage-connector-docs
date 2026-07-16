@@ -6,6 +6,9 @@ module.exports = {
   baseUrl: '/opcon/connectors/azure-storage/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
+  markdown: {
+    format: "md",
+  },
   favicon: 'img/favicon.ico',
   organizationName: 'smatechnologies',
   projectName: 'azurestorage-connector-docs',
