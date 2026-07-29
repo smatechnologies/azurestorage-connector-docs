@@ -16,9 +16,12 @@ tags:
 
 The Azure Storage Connector is a Windows-based executable that OpCon calls when running Azure Storage jobs. Installing the connector involves extracting the distribution archive, registering the job subtype in Enterprise Manager, and creating the required global properties in OpCon.
 
+To access the connector from Solution Manager, the ACS AzureStorage capability can be installed. This capability is a wrapper for the existing Azure Storage Connector providing Solution Manager screens for managing the connector.  
+
 - Required before any Azure Storage jobs can run in OpCon
 - Must be installed on each Windows agent that will execute Azure Storage jobs
 - Enterprise Manager must be restarted after the plugin is placed in the `dropins` directory
+- Solution Manager implementation only works with Windows Azure Storage Connector installations when connector is installed on the OpCon or Relay server 
 
 ## How to implement it
 
@@ -27,6 +30,7 @@ The Azure Storage Connector is a Windows-based executable that OpCon calls when 
 - A Windows agent with network access to the Azure Storage account
 - Java 11 (included in the connector distribution — no separate installation required)
 - Administrative access to Enterprise Manager and OpCon
+- Solution Manager Support requires OpCon Cloud or OpCon DataCenter 26.0.4 or greater
 
 ### Step 1 — Download and extract
 
@@ -34,6 +38,12 @@ To install the connector, complete the following steps:
 
 1. Download `AzureStorage_Windows.zip` from the [Azure Storage Connector releases page](https://github.com/SMATechnologies/azure-storage-java/releases).
 2. Extract the zip file to the installation directory on the Windows agent. All required files are located under the root folder of the extracted directory.
+
+To install Solution Manager support, complete the following steps:
+
+1. Download `ACSAzureStorage.zip` from the SMA FTP site /OpCon Releases/Integration/AzureStorage/
+2. For OpCon DataCenter, extract the files into the /ProgramData/SAM/plugins directory
+3. For OpCon Cloud, extract the files into the /Relay/plugins directory. 
 
 ### Step 2 — Install the Enterprise Manager plugin
 
@@ -51,6 +61,58 @@ To configure the required global properties, complete the following steps:
 
 1. In OpCon, create a global property named `AzureStoragePath` and set its value to the full path of the connector installation directory (for example, `C:\ConnectorFiles\AzureStorage`).
 2. Create an encrypted global property to store the Azure Storage connection string (access key). Reference this property in job definitions using the `[[property_name]]` token syntax.
+
+### Step 4 — Create the definitions to support Solution Manager
+
+This requires defining a script that will contain the contents of the Connector.config file used for the AzureStorage connector and defining an agent connection.
+
+Using Solution Manager define the configuration script
+
+1. Select **Library**
+2. Select **Scripts**
+3. Select **Script types** from the upper right-hand corner
+   Select **+Add**
+   In the Name field enter **ACSAzureStorage**
+   In the File Extension filed enter **txt**
+   In the Description field enter **Used for ACSAzureStorage Integration**
+   Select **Save**
+4. Select **Script Runners** from the upper right hand corner
+   Select **+Add**
+   In the Name field enter **ACSAzureStorage**
+   In the OS field select ACSAzureStorage from the drop-down list
+   In the Type field select ACSAzureStorage from the drop-down list
+   In the Command field enter **cmd.exe /c**
+   Select **Save**
+5. Select **Scripts** from the upper right hand corner to create the Connector.config script
+   Select **+Add**
+   In the Name field enter a name for the script. It is suggested using the proposed agent name and append _config to the name.
+   In the Type field select ACSAzureStorage from the drop-down list
+   Assign the required roles
+   In the Script paste the contents of the created Connector.config file (see **Configuration options** section)
+   Select **Save**
+
+Using Solution Manager define the ACS agent
+
+1. Select **Library**
+2. Select **Agents**
+   Select **+Add**
+   In the **Name** field enter the name of the ACS AzureStorage agent
+   Select **AzureStorage** from the Type drop-down list
+   Select **General Settings**
+   In the NetCom field enter <Default> or a Netcom or Relay name
+   In the **AzureStorage Settings** section enter the required information
+   In the Client Information section
+   In the **Directory** field enter the installation directory of the AzureStorage Connector
+   In the **Name** field insert AzureStorage.exe
+   In the **Config File Name** field insert Connector.config (default value)
+   In the Config Script section
+      Select **ACSAzureStorage** from the Script Runner drop-down list
+      Select the config script you previously created from the Script drop-down list
+   Select **Save**
+3. Now select **Communication Settings**
+   Ensure that the Requires XML Escape Sequences: User-Defined field is set to True 
+   If not change the field and save the definition changes
+4. Select **CHANGE COMMUNICATION STATUS** and select **Enable Full Comm** to start the agent.    
 
 ## Configuration options
 
