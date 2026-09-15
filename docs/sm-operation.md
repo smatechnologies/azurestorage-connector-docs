@@ -10,8 +10,6 @@ tags:
 
 # Solution Manager operation
 
-**Theme:** Configure | **Audience:** Automation Engineers
-
 ## What is it?
 
 The Solution Manager operation page describes how to define Azure Storage jobs using the AzureStorage job type in Solution Manager.
@@ -159,7 +157,7 @@ The **Container Name** identifies the top-level container in the storage account
 
 **Does Solution Manager support wildcard patterns for file operations?**
 
-Wildcards (`?` and `*`) are supported for List Containers and List Files tasks. They are not supported for File Arrival or when specific local and container filenames are both provided for download and upload tasks.
+Wildcards (`?` and `*`) are supported for List Containers and List Files tasks. For File Arrival, a wildcard is supported in the file name but not in the container name. They do not apply when specific local and container filenames are both provided for download and upload tasks.
 
 **What format is the Access Key?**
 
