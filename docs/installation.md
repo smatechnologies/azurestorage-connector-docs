@@ -10,8 +10,6 @@ tags:
 
 # Installation
 
-**Theme:** Configure | **Audience:** System Administrators
-
 ## What is it?
 
 The Azure Storage Connector is a Windows-based executable that OpCon calls when running Azure Storage jobs. Installing the connector involves extracting the distribution archive, registering the job subtype in Enterprise Manager, and creating the required global properties in OpCon.
@@ -19,7 +17,7 @@ The Azure Storage Connector is a Windows-based executable that OpCon calls when 
 To access the connector from Solution Manager, the ACS AzureStorage capability can be installed. This capability is a wrapper for the existing Azure Storage Connector providing Solution Manager screens for managing the connector.  
 
 - Required before any Azure Storage jobs can run in OpCon
-- Must be installed on each Windows agent that will execute Azure Storage jobs
+- Must be installed on each Windows agent that will run Azure Storage jobs
 - Enterprise Manager must be restarted after the plugin is placed in the `dropins` directory
 - Solution Manager implementation only works with Windows Azure Storage Connector installations when connector is installed on the OpCon or Relay server 
 
@@ -53,7 +51,11 @@ To register the job subtype in Enterprise Manager, complete the following steps:
 2. Paste the file into the `dropins` directory of each Enterprise Manager installation that will create Azure Storage job definitions. Create the `dropins` directory if it does not exist.
 3. Restart Enterprise Manager. The **Azure Storage** Windows job subtype is displayed in the job type list.
 
-**NOTE:** If the job subtype does not appear after restarting, right-click Enterprise Manager in the taskbar and select **Run as Administrator**, then restart again.
+:::info Note
+
+If the job subtype does not appear after restarting, right-click Enterprise Manager in the taskbar and select **Run as Administrator**, then restart again.
+
+:::
 
 ### Step 3 — Create global properties in OpCon
 
@@ -66,49 +68,54 @@ To configure the required global properties, complete the following steps:
 
 This requires defining a script that will contain the contents of the Connector.config file used for the AzureStorage connector and defining an agent connection.
 
-Using Solution Manager define the configuration script
+To define the configuration script in Solution Manager, complete the following steps.
 
-1. Select **Library**
-2. Select **Scripts**
-3. Select **Script types** from the upper right-hand corner
-   Select **+Add**
-   In the Name field enter **ACSAzureStorage**
-   In the File Extension filed enter **txt**
-   In the Description field enter **Used for ACSAzureStorage Integration**
-   Select **Save**
-4. Select **Script Runners** from the upper right hand corner
-   Select **+Add**
-   In the Name field enter **ACSAzureStorage**
-   In the OS field select ACSAzureStorage from the drop-down list
-   In the Type field select ACSAzureStorage from the drop-down list
-   In the Command field enter **cmd.exe /c**
-   Select **Save**
-5. Select **Scripts** from the upper right hand corner to create the Connector.config script
-   Select **+Add**
-   In the Name field enter a name for the script. It is suggested using the proposed agent name and append _config to the name.
-   In the Type field select ACSAzureStorage from the drop-down list
-   Assign the required roles
-   In the Script paste the contents of the created Connector.config file (see **Configuration options** section)
-   Select **Save**
+First, create the script type:
 
-Using Solution Manager define the ACS agent
+1. Select **Library**, then select **Scripts**.
+2. Select **Script types** from the upper right-hand corner.
+3. Select **+Add**.
+4. In the **Name** field, enter `ACSAzureStorage`.
+5. In the **File Extension** field, enter `txt`.
+6. In the **Description** field, enter `Used for ACSAzureStorage Integration`.
+7. Select **Save**.
 
-1. Select **Library**
-2. Select **Agents**
-   Select **+Add**
-   In the **Name** field enter the name of the ACS AzureStorage agent
-   Select **AzureStorage** from the Type drop-down list
-   Select **General Settings**
-   In the NetCom field enter <Default> or a Netcom or Relay name
-   In the **AzureStorage Settings** section enter the required information
-   In the Client Information section
-   In the **Directory** field enter the installation directory of the AzureStorage Connector
-   In the **Name** field insert AzureStorage.exe
-   In the **Config File Name** field insert Connector.config (default value)
-   In the Config Script section
-      Select **ACSAzureStorage** from the Script Runner drop-down list
-      Select the config script you previously created from the Script drop-down list
-   Select **Save**
+Next, create the script runner:
+
+1. Select **Script Runners** from the upper right-hand corner.
+2. Select **+Add**.
+3. In the **Name** field, enter `ACSAzureStorage`.
+4. In the **OS** field, select **ACSAzureStorage** from the list.
+5. In the **Type** field, select **ACSAzureStorage** from the list.
+6. In the **Command** field, enter `cmd.exe /c`.
+7. Select **Save**.
+
+Finally, create the `Connector.config` script:
+
+1. Select **Scripts** from the upper right-hand corner.
+2. Select **+Add**.
+3. In the **Name** field, enter a name for the script. Using the proposed agent name with `_config` appended is suggested.
+4. In the **Type** field, select **ACSAzureStorage** from the list.
+5. Assign the required roles.
+6. In the **Script** field, paste the contents of the `Connector.config` file you created. See [Configuration options](#configuration-options).
+7. Select **Save**.
+
+To define the ACS agent in Solution Manager, complete the following steps.
+
+1. Select **Library**, then select **Agents**.
+2. Select **+Add**.
+3. In the **Name** field, enter the name of the ACS AzureStorage agent.
+4. In the **Type** field, select **AzureStorage** from the list.
+5. Select **General Settings**.
+6. In the **NetCom** field, enter `<Default>`, or the name of a NetCom or Relay.
+7. In the **AzureStorage Settings** section, under **Client Information**:
+   - In the **Directory** field, enter the installation directory of the AzureStorage Connector.
+   - In the **Name** field, enter `AzureStorage.exe`.
+   - In the **Config File Name** field, enter `Connector.config`. This is the default value.
+8. In the **Config Script** section:
+   - In the **Script Runner** field, select **ACSAzureStorage** from the list.
+   - In the **Script** field, select the config script you created above.
+9. Select **Save**.
 3. Now select **Communication Settings**
    Ensure that the Requires XML Escape Sequences: User-Defined field is set to True 
    If not change the field and save the definition changes
@@ -120,8 +127,16 @@ The connector reads its configuration from the `Connector.config` file in the in
 
 | Setting | What it does | Default | Notes |
 |---|---|---|---|
-| `NAME` | Display name for the connector instance | `Azure Storage Connector` | Informational only |
+| `NAME` | Display name for the connector instance | None | Informational only. The connector does not read this value |
 | `DEBUG` | Enables detailed debug logging | `OFF` | Set to `ON` to write verbose log output for troubleshooting |
+| `[STORAGE ACCOUNTS]` | Section header | — | Present in the supplied `Connector.config`. See note below |
+| `STORAGE` | Named storage account entry | None | Present in the supplied `Connector.config`. See note below |
+
+:::info Note
+
+The supplied `Connector.config` also contains a `[STORAGE ACCOUNTS]` section with a `STORAGE` entry. The storage account name and access key used by a job are supplied per job, through the **Account Name** and **Access Key** fields or the `-sa` and `-k` arguments — not through this file. Leave the section as supplied unless your component owner directs otherwise.
+
+:::
 
 **Connector.config example:**
 
@@ -129,6 +144,9 @@ The connector reads its configuration from the `Connector.config` file in the in
 [CONNECTOR]
 NAME=Azure Storage Connector
 DEBUG=OFF
+
+[STORAGE ACCOUNTS]
+STORAGE=<storage account entry>
 ```
 
 ## Exception handling

@@ -16,13 +16,13 @@ tags:
 
 2024 December
 
-### What's new
+#### What's new
 
 :eight_spoked_asterisk: Added support for ACS (Azure Container Storage) Azure Storage job subtype in Solution Manager, providing a new interface for configuring Azure Storage jobs.
 
 :eight_spoked_asterisk: Updated connector to use Azure Java SDK for all Azure Storage interactions, improving reliability and compatibility with current Azure APIs.
 
-### Why this matters
+#### Why this matters
 
 The new ACS Azure Storage job subtype in Solution Manager gives operations teams a modern, browser-based interface for configuring Azure Storage jobs without requiring access to Enterprise Manager. Updating to the Azure Java SDK ensures the connector stays compatible with current Azure APIs and security requirements.
 
@@ -40,7 +40,7 @@ The new ACS Azure Storage job subtype in Solution Manager gives operations teams
 
 2022 January
 
-### What's new
+#### What's new
 
 :eight_spoked_asterisk: Rewrote connector using the Azure Java SDK, replacing the previous REST API implementation for improved reliability and Azure API compatibility.
 
@@ -50,6 +50,6 @@ The new ACS Azure Storage job subtype in Solution Manager gives operations teams
 
 :eight_spoked_asterisk: Added support for folder paths within containers for file delete, file download, file list, and file upload tasks.
 
-### Why this matters
+#### Why this matters
 
 Version 2.0.0 replaces the previous REST-based implementation with the Azure Java SDK, improving compatibility with Azure's evolving APIs. The new Enterprise Manager job subtype eliminates the need to construct command-line arguments manually. File arrival monitoring enables event-driven automation that responds to file delivery rather than running on a fixed schedule.

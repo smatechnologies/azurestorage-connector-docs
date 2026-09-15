@@ -10,8 +10,6 @@ tags:
 
 # Azure Storage Connector overview
 
-**Theme:** Overview | **Audience:** Automation Engineers, System Administrators
-
 ## What is it?
 
 The Azure Storage Connector is an OpCon connector for Windows that uses the Azure Java SDK to interact with Microsoft Azure Blob Storage. It enables OpCon to automate file and container management tasks as part of a scheduled workflow.
@@ -29,13 +27,17 @@ The connector provides the following tasks for managing containers and blobs (fi
 
 | Task | Description |
 |---|---|
-| **list** | Returns a list of containers and blobs |
-| **container create** | Creates a container in the storage account |
-| **container delete** | Deletes a container from the storage account |
-| **delete file** | Deletes a blob within a container |
-| **download file** | Downloads a blob from a container to a local directory |
-| **upload file** | Uploads a file from a local directory to a container |
-| **file arrival** | Waits for a specified blob to arrive in a container |
+| **containercreate** | Creates a new container in the storage account |
+| **containerdelete** | Deletes containers from the storage account. Supports wildcards |
+| **containerlist** | Lists containers in the storage account. Supports wildcards |
+| **filearrival** | Monitors a container for the arrival of a specified file |
+| **filedelete** | Deletes files from containers in the storage account. Supports wildcards |
+| **filedownload** | Downloads files from a container to a local directory |
+| **filelist** | Lists files within containers in the storage account. Supports wildcards |
+| **fileupload** | Uploads files from a local directory to a container |
+
+The task name in the left column is the value passed to the connector. For the full argument list
+for each task, see [Enterprise Manager operation](./em-operation.md).
 
 ## How it connects to OpCon
 
@@ -58,7 +60,7 @@ The connector requires Java 11. An embedded Java Runtime Environment 11 is inclu
 
 **Does the connector support wildcard patterns?**
 
-Yes, wildcard patterns using `?` and `*` are supported for container delete, container list, file delete, file download, file list, and file upload tasks. Wildcards are not supported for the file arrival task.
+Yes. Wildcards using `?` and `*` are supported for the container delete, container list, file delete, file download, file list, and file upload tasks. For the file arrival task, a wildcard is supported in the file name but not in the container name. Wildcards do not apply to download and upload when both a specific source and a specific target file name are given.
 
 **Can I use the connector from both Enterprise Manager and Solution Manager?**
 
