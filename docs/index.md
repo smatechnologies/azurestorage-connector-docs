@@ -15,16 +15,44 @@ tags:
 
 The Azure Storage Connector is an OpCon connector for Windows that automates file and container management tasks in Microsoft Azure Blob Storage.
 
-## Overview
+<div style={{display: 'flex', gap: '0.75rem', alignItems: 'flex-start', flexWrap: 'wrap', marginTop: '1rem'}}>
 
-- [Overview](./overview.md) — what the connector does, the tasks it supports, and key Azure Storage concepts
-- [Release notes](./release-notes.md) — version history and change details
+<div style={{flex: '1', minWidth: '160px', display: 'flex', flexDirection: 'column', gap: '0.6rem'}}>
 
-## Getting started
+<div style={{background: 'var(--ifm-card-background-color)', border: '1px solid var(--ifm-color-emphasis-400)', borderRadius: '10px', padding: '0.75rem 1rem'}}>
 
-- [Installation](./installation.md) — install the connector, register the job subtype, and create the required global properties
+### Overview
 
-## Using the connector
+- [Overview](./overview.md)
+- [Release Notes](./release-notes.md)
 
-- [Enterprise Manager operation](./em-operation.md) — job subtype fields and the full command-line argument reference
-- [Solution Manager operation](./sm-operation.md) — task types and fields in Solution Manager
+</div>
+
+</div>
+
+<div style={{flex: '1', minWidth: '160px', display: 'flex', flexDirection: 'column', gap: '0.6rem'}}>
+
+<div style={{background: 'var(--ifm-card-background-color)', border: '1px solid var(--ifm-color-emphasis-400)', borderRadius: '10px', padding: '0.75rem 1rem'}}>
+
+### Getting started
+
+- [Installation](./installation.md)
+
+</div>
+
+</div>
+
+<div style={{flex: '1', minWidth: '160px', display: 'flex', flexDirection: 'column', gap: '0.6rem'}}>
+
+<div style={{background: 'var(--ifm-card-background-color)', border: '1px solid var(--ifm-color-emphasis-400)', borderRadius: '10px', padding: '0.75rem 1rem'}}>
+
+### Using the connector
+
+- [Enterprise Manager operation](./em-operation.md)
+- [Solution Manager operation](./sm-operation.md)
+
+</div>
+
+</div>
+
+</div>
