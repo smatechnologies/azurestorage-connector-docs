@@ -10,7 +10,21 @@ tags:
 
 # Azure Storage Connector release notes
 
-## 2
+## 26
+
+### 26.0.0
+
+The AzureStotage connector has been moved from the SMA Innovation Lab to fully supported within the Continuous Connector environment.
+Release 26.0.0 is the first release that must be downloaded from the Continuous FTP Site under **/OpCon Releases/Connectors/AzureStorage**. 
+
+
+This version should be used in conjunction with the ACS AzureStorage Solution Manager add on. 
+
+2026 September
+
+#### What's new
+
+:eight_spoked_asterisk: All libraries upgraded to latest versions and support for Java 11. 
 
 ### 2.0.2
 

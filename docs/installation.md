@@ -34,12 +34,12 @@ To access the connector from Solution Manager, the ACS AzureStorage capability c
 
 To install the connector, complete the following steps:
 
-1. Download `AzureStorage_Windows.zip` from the [Azure Storage Connector releases page](https://github.com/SMATechnologies/azure-storage-java/releases).
+1. Download `AzureStorageConnector-win.zip` from the Continuous FTP site **/OpCon Releases/Connectors/AzureStorage**. 
 2. Extract the zip file to the installation directory on the Windows agent. All required files are located under the root folder of the extracted directory.
 
 To install Solution Manager support, complete the following steps:
 
-1. Download `ACSAzureStorage.zip` from the SMA FTP site /OpCon Releases/Integration/AzureStorage/
+1. Download `ACSAzureStorage.zip` from the Continuous FTP site **/OpCon Releases/Integration/AzureStorage/**
 2. For OpCon DataCenter, extract the files into the /ProgramData/SAM/plugins directory
 3. For OpCon Cloud, extract the files into the /Relay/plugins directory. 
 
@@ -97,8 +97,20 @@ Finally, create the `Connector.config` script:
 3. In the **Name** field, enter a name for the script. Using the proposed agent name with `_config` appended is suggested.
 4. In the **Type** field, select **ACSAzureStorage** from the list.
 5. Assign the required roles.
-6. In the **Script** field, paste the contents of the `Connector.config` file you created. See [Configuration options](#configuration-options).
+6. In the **Script** field, paste the contents of the `Connector.config` file you created. 
 7. Select **Save**.
+
+Script example, STORAGE value can be left as is as this is now overwritten by the value in the task definition.
+
+```
+[CONNECTOR]
+NAME=Azure Storage Connector
+DEBUG=ON
+
+[STORAGE ACCOUNTS]
+STORAGE=<storage account entry>
+
+```
 
 To define the ACS agent in Solution Manager, complete the following steps.
 
